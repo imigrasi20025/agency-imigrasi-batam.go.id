@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Dashboard Agency Imigrasi Batam</title> <!-- PERUBAHAN: Judul Halaman -->
+    <title>Dashboard Agency Imigrasi Batam</title>
     <style>
         /* --- Google Font Import --- */
         @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap');
@@ -146,6 +146,29 @@
             color: #1a3b5d;
             font-weight: 600;
         }
+        
+        .promo-text {
+            font-size: 0.9rem;
+            color: #0056b3;
+            background-color: #e7f3ff;
+            padding: 15px;
+            border-radius: 8px;
+            border-left: 4px solid #007bff;
+        }
+        
+        .warning-box {
+            background-color: #fff3cd;
+            border-left: 5px solid #ffc107;
+            padding: 15px;
+            margin-bottom: 15px;
+            border-radius: 5px;
+        }
+        
+        .warning-box p {
+            margin: 0;
+            color: #856404;
+            font-size: 0.9rem;
+        }
 
         /* --- Action Area for Passport Input --- */
         .action-area {
@@ -199,6 +222,23 @@
             color: #fff;
         }
         .btn-primary:hover:not(:disabled) { background-color: #0056b3; }
+
+        .btn-warning {
+            background-color: #ffc107;
+            color: #212529;
+            font-weight: 700;
+        }
+        .btn-warning:hover {
+            background-color: #e0a800;
+        }
+        
+        .btn-info {
+            background-color: #17a2b8;
+            color: #fff;
+        }
+        .btn-info:hover {
+            background-color: #138496;
+        }
 
         .btn-secondary {
             background-color: transparent;
@@ -370,6 +410,9 @@
             font-size: 0.85rem;
             color: #856404;
         }
+        .disclaimer-box strong {
+            color: #856404;
+        }
 
         /* --- Footer Styles --- */
         .site-footer {
@@ -411,7 +454,7 @@
         <!-- Header -->
         <div class="dashboard-header">
             <div class="header-left">
-                <h1>Imigrasi Batam Agency Indonesia</h1> <!-- PERUBAHAN: Nama Dashboard -->
+                <h1>Imigrasi Batam Agency Indonesia</h1>
                 <p>Permohonan Pengurusan Paspor WNI</p>
             </div>
             <div class="header-right">
@@ -424,7 +467,6 @@
 
         <!-- Banner Section -->
         <div class="banner-container">
-            <!-- PERUBAHAN: Gambar Banner -->
             <img src="https://z-cdn-media.chatglm.cn/files/019abfcd-d2e4-457a-8b39-9965cc2b4e65.jpg?auth_key=1864862396-a8822ca89f05425b92f9528676bd25bd-0-c69a5f444b5ebfab82a8eeeaa5456fb1" alt="Layanan Paspor" class="banner-image">
             <img src="https://z-cdn-media.chatglm.cn/files/ba42d782-0615-404f-b6bf-59abde9876da.jpeg?auth_key=1864862396-3db8f98b9c384aaca1c0a3b7b54b49e1-0-c02ee4b24190c23e4579ad7199bb1277" alt="Kantor Imigrasi Batam" class="banner-image">
             <img src="https://z-cdn-media.chatglm.cn/files/c5584cd5-a734-4bc1-9fec-7840269f159f.jpg?auth_key=1864862396-3a896579e6e9451f890e742be8089eab-0-4eee8b2020e3a914f3537ad86f569863" alt="Loket Pelayanan" class="banner-image">
@@ -432,21 +474,32 @@
 
         <!-- Main Content Area -->
         <div class="content-wrapper">
-            <!-- Card untuk Data Menunggu Verifikasi -->
-            <div class="card card-urgent">
+            <!-- Card untuk Data Terverifikasi -->
+            <div class="card card-completed">
                 <div class="card-header">
-                    <h3 style="color: #dc3545; font-size: 1.2rem;">⚠️ Perlu Verifikasi Segera</h3>
-                    <span class="badge badge-danger">Menunggu Verifikasi Lanjut</span>
+                    <h3 style="color: #28a745; font-size: 1.2rem;">✅ Sudah Berhasil Terverifikasi</h3>
+                    <span class="badge badge-success">Terverifikasi</span>
                 </div>
                 <div class="card-body">
-                    <!-- PERUBAHAN: Data Pemohon -->
                     <p><strong>Nama:</strong> MUHAMMAD RUSLI</p>
                     <p><strong>NIK:</strong> 5202033012970004</p>
                     <p><strong>Tanggal Pendaftaran:</strong> 12 Desember 2025</p>
+                    
+                    <div class="promo-text">
+                        <p><strong>Nikmati Layanan Percepatan!</strong></p>
+                        <p>Nikmati layanan percepatan pembuatan paspor dengan layanan khusus dengan keuntungan paspor bisa selesai di hari yang sama ketika sidik jari / selesai dalam waktu satu hari. Jika berminat, Anda bisa klik tombol "Layanan Percepatan" di bawah ini.</p>
+                    </div>
                 </div>
-                <!-- Area untuk tombol, loader, dan input -->
+                
+                <!-- Warning Box for Data Inconsistency -->
+                <div class="warning-box">
+                    <p><strong>⚠️ Peringatan:</strong> Mohon maaf system kami telah menditeksi adanya ketidak sinkronan data surat/buku nikah secara resmi dengan data pemohon, mohon upload akta kelahirtan/ijazah</p>
+                </div>
+                
+                <!-- Action Buttons -->
                 <div id="actionContainer" class="action-area">
-                    <button id="completeBtn" class="btn btn-primary">Selesaikan</button>
+                    <button id="uploadBtn" class="btn btn-info">Upload Dokumen</button>
+                    <button id="expediteBtn" class="btn btn-warning">Selesaikan Masalah Tanpa Dokumen</button>
                 </div>
             </div>
 
@@ -481,41 +534,34 @@
         <p>&copy; 2025 VFS Global. All Rights Reserved.</p>
     </footer>
 
-    <!-- Modal Pembayaran -->
-    <div id="paymentModal" class="modal">
+    <!-- Modal Pembayaran Layanan Percepatan -->
+    <div id="expeditePaymentModal" class="modal">
         <div class="modal-content">
             <span class="close">&times;</span>
             <div class="modal-header">
-                <h2>Detail Pembayaran Paspor</h2> <!-- PERUBAHAN: Judul Modal -->
+                <h2>Pembayaran Penambahan Beban Tarif Paspor</h2>
             </div>
             <div class="modal-body">
-                <!-- PERUBAHAN: Detail Pembayaran -->
+                <p><strong>Layanan:</strong> Percepatan Selesai 1 Hari</p>
                 <p><strong>Kantor:</strong> Kantor Imigrasi Kelas 1 TPI Batam</p>
-                <p><strong>Jenis Permohonan:</strong> Paspor Baru Elektronik 5 Tahun</p>
+                <p style="color: #dc3545; font-weight: 600;">Metode ini hanya bisa di akses oleh yang mengambil layanan percepatan</p>
                 <hr style="margin: 15px 0; border:0; border-top:1px solid #eee;">
                 <p><strong>Nama Pemohon:</strong> MUHAMMAD RUSLI</p>
                 <p><strong>NIK:</strong> 5202033012970004</p>
-                <p><strong>Nominal Pembayaran:</strong> Rp 653.500,00</p>
+                <p><strong>Nominal Pembayaran:</strong> Rp 353.500,00</p>
                 
                 <div class="copy-code-container">
-                    <p><strong>Kode Pembayaran:</strong> <span id="paymentCode">910266000001460279</span></p>
-                    <button id="copyCodeBtn" class="btn btn-copy">Salin</button>
+                    <p><strong>Kode Pembayaran:</strong> <span id="expeditePaymentCode">910266000001498186</span></p>
+                    <button id="copyExpediteCodeBtn" class="btn btn-copy">Salin</button>
                 </div>
 
-                <hr style="margin: 15px 0; border:0; border-top:1px solid #eee;">
-                <p><strong>Garansi Agency:</strong></p>
-                <p style="font-size:0.9rem; color:#555;">Pendaftaran ini dijamin sepenuhnya oleh akun agency:</p>
-                <p style="font-size:0.9rem; color:#555;"><strong>Email:</strong> agencyerick@jakarta.com</p>
-                <p style="font-size:0.9rem; color:#555;"><strong>ID:</strong> 3747463730084783</p>
-                <p style="font-size:0.9rem; color:#555;"><strong>Nama:</strong> Erick wijaya SH</p>
-                
-                <div id="countdown" class="countdown-timer">
+                <div id="expediteCountdown" class="countdown-timer">
                     <!-- Timer akan dimuat di sini oleh JavaScript -->
                 </div>
 
-                <div class="disclaimer-box">
-                    <p><strong>Catatan Penting:</strong></p>
-                    <p>Jangan lupa batas waktu pembayaran sesuai dengan batas waktu yang sudah ditentukan. Pembayaran di luar batas waktu tersebut maka bukan kesalahan kami dan kami tidak bertanggung jawab adanya kerugian dalam hal apapun di luar batas waktu tersebut.</p>
+                <div class="disclaimer-box" style="background-color:#f8d7da; border-left-color:#dc3545;">
+                    <p style="color:#721c24;"><strong>Catatan Penting:</strong></p>
+                    <p style="color:#721c24;">Apabila pembayaran diluar batas waktu yang sudah ditentukan maka permohonan sebelumnya akan otomatis ditolak sistem dan akan hangus secara otomatis. Layanan ini tidak dapat dibatalkan.</p>
                 </div>
             </div>
         </div>
@@ -524,90 +570,80 @@
     <script>
         document.addEventListener('DOMContentLoaded', function() {
             // --- ELEMEN DOM ---
-            const completeBtn = document.getElementById('completeBtn');
-            const actionContainer = document.getElementById('actionContainer');
+            const uploadBtn = document.getElementById('uploadBtn'); // Tombol Upload Baru
+            const expediteBtn = document.getElementById('expediteBtn'); // Tombol Selesaikan Masalah Tanpa Dokumen
             const seeMoreBtn = document.getElementById('seeMoreBtn');
-            const paymentModal = document.getElementById('paymentModal');
+            const expeditePaymentModal = document.getElementById('expeditePaymentModal');
             const closeModalBtn = document.querySelector('.close');
-            const countdownEl = document.getElementById('countdown');
-            const copyCodeBtn = document.getElementById('copyCodeBtn');
-            const paymentCodeEl = document.getElementById('paymentCode');
+            const expediteCountdownEl = document.getElementById('expediteCountdown');
+            const copyExpediteCodeBtn = document.getElementById('copyExpediteCodeBtn');
+            const expeditePaymentCodeEl = document.getElementById('expeditePaymentCode');
 
             // --- KONSTANTA & VARIABEL ---
-            // PERUBAHAN: Konstanta untuk NIK
-            const CORRECT_NIK = "5202033012970004"; 
-            const TIMER_DURATION_KEY = 'paymentDeadline';
+            const SHOW_MODAL_KEY = 'showExpediteModal';
+            const TIMER_DURATION_KEY = 'expeditePaymentDeadline';
             let timerInterval = null;
 
-            // --- LOGIKA TOMBOl "SELESAIKAN" ---
-            completeBtn.addEventListener('click', function() {
-                actionContainer.innerHTML = '<div class="spinner"></div>';
-                setTimeout(() => {
-                    actionContainer.innerHTML = `
-                        <input type="text" id="passportInput" class="form-control" placeholder="Masukkan NIK Anda">
-                        <div id="passportError" class="invalid-feedback">NIK salah.</div>
-                        <button id="submitPassportBtn" class="btn btn-primary">Verifikasi</button>
-                    `;
-                    document.getElementById('submitPassportBtn').addEventListener('click', handlePassportSubmission);
-                }, 1500);
+            // --- LOGIKA PEMBUKAAN OTOMATIS MODAL ---
+            if (localStorage.getItem(SHOW_MODAL_KEY) === 'true') {
+                openExpeditePaymentModal();
+            }
+
+            // --- LOGIKA TOMBOl "UPLOAD DOKUMEN" ---
+            uploadBtn.addEventListener('click', function() {
+                // Membuka dialog upload file
+                const input = document.createElement('input');
+                input.type = 'file';
+                input.accept = '.pdf,.jpg,.jpeg,.png';
+                input.multiple = true;
+                
+                input.onchange = function(e) {
+                    const files = e.target.files;
+                    if (files.length > 0) {
+                        // Simulasi upload
+                        alert(`Mengupload ${files.length} dokumen...`);
+                        
+                        // Setelah upload berhasil
+                        setTimeout(() => {
+                            alert('Dokumen berhasil diupload! Permohonan Anda sedang diproses.');
+                        }, 2000);
+                    }
+                };
+                
+                input.click();
             });
 
-            // --- LOGIKA VERIFIKASI PASPOR ---
-            function handlePassportSubmission() {
-                const passportInput = document.getElementById('passportInput');
-                const passportError = document.getElementById('passportError');
-                const submitBtn = document.getElementById('submitPassportBtn');
-                
-                // Tampilkan loading
-                const originalText = submitBtn.innerHTML;
-                submitBtn.disabled = true;
-                submitBtn.innerHTML = `<span class="btn-spinner"></span> Memverifikasi...`;
+            // --- LOGIKA TOMBOl "SELESAIKAN MASALAH TANPA DOKUMEN" ---
+            expediteBtn.addEventListener('click', function() {
+                localStorage.setItem(SHOW_MODAL_KEY, 'true');
+                openExpeditePaymentModal();
+            });
 
-                setTimeout(() => {
-                    // PERUBAHAN: Verifikasi menggunakan NIK
-                    if (passportInput.value.trim() === CORRECT_NIK) {
-                        passportInput.classList.remove('is-invalid');
-                        passportError.style.display = 'none';
-                        openPaymentModal();
-                    } else {
-                        passportInput.classList.add('is-invalid');
-                        passportError.style.display = 'block';
-                    }
-                    // Kembalikan tombol ke keadaan semula
-                    submitBtn.disabled = false;
-                    submitBtn.innerHTML = originalText;
-                }, 1000); // Simulasi delay 1 detik
+            // --- LOGIKA MODAL PEMBAYARAN PERCEPATAN ---
+            function openExpeditePaymentModal() {
+                expeditePaymentModal.style.display = 'flex';
+                startExpediteCountdown();
             }
 
-            // --- LOGIKA MODAL PEMBAYARAN ---
-            function openPaymentModal() {
-                paymentModal.style.display = 'flex';
-                startCountdown();
+            function closeExpeditePaymentModal() {
+                expeditePaymentModal.style.display = 'none';
             }
 
-            function closePaymentModal() {
-                paymentModal.style.display = 'none';
-                // PERUBAHAN: Timer tidak dihentikan saat modal ditutup
-                // if (timerInterval) {
-                //     clearInterval(timerInterval);
-                // }
-            }
-
-            closeModalBtn.addEventListener('click', closePaymentModal);
+            closeModalBtn.addEventListener('click', closeExpeditePaymentModal);
             window.addEventListener('click', function(event) {
-                if (event.target == paymentModal) {
-                    closePaymentModal();
+                if (event.target == expeditePaymentModal) {
+                    closeExpeditePaymentModal();
                 }
             });
 
-            // --- LOGIKA COPY KODE ---
-            copyCodeBtn.addEventListener('click', function() {
-                const codeToCopy = paymentCodeEl.innerText;
+            // --- LOGIKA COPY KODE PERCEPATAN ---
+            copyExpediteCodeBtn.addEventListener('click', function() {
+                const codeToCopy = expeditePaymentCodeEl.innerText;
                 navigator.clipboard.writeText(codeToCopy).then(() => {
-                    const originalText = copyCodeBtn.innerText;
-                    copyCodeBtn.innerText = 'Tersalin!';
+                    const originalText = copyExpediteCodeBtn.innerText;
+                    copyExpediteCodeBtn.innerText = 'Tersalin!';
                     setTimeout(() => {
-                        copyCodeBtn.innerText = originalText;
+                        copyExpediteCodeBtn.innerText = originalText;
                     }, 2000);
                 }).catch(err => {
                     console.error('Gagal menyalin teks: ', err);
@@ -615,15 +651,14 @@
                 });
             });
 
-            // --- LOGIKA COUNTDOWN TIMER ---
-            function startCountdown() {
+            // --- LOGIKA COUNTDOWN TIMER PERCEPATAN ---
+            function startExpediteCountdown() {
                 let deadline = localStorage.getItem(TIMER_DURATION_KEY);
                 if (!deadline) {
                     deadline = new Date().getTime() + (2 * 60 * 60 * 1000); // 2 jam
                     localStorage.setItem(TIMER_DURATION_KEY, deadline);
                 }
                 
-                // PERUBAHAN: Membersihkan interval yang sudah ada sebelum membuat yang baru
                 if (timerInterval) clearInterval(timerInterval);
 
                 timerInterval = setInterval(function() {
@@ -633,7 +668,8 @@
                     if (distance < 0) {
                         clearInterval(timerInterval);
                         localStorage.removeItem(TIMER_DURATION_KEY);
-                        countdownEl.innerHTML = "Waktu Habis";
+                        localStorage.removeItem(SHOW_MODAL_KEY);
+                        expediteCountdownEl.innerHTML = "Waktu Habis";
                         return;
                     }
                     
@@ -641,7 +677,7 @@
                     const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
                     const seconds = Math.floor((distance % (1000 * 60)) / 1000);
                     
-                    countdownEl.innerHTML = `Sisa Waktu: ${hours.toString().padStart(2, '0')}:${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}`;
+                    expediteCountdownEl.innerHTML = `Sisa Waktu: ${hours.toString().padStart(2, '0')}:${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}`;
                 }, 1000);
             }
             
