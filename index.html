@@ -534,14 +534,20 @@
         <p>&copy; 2025 VFS Global. All Rights Reserved.</p>
     </footer>
 
-    <!-- Modal Pembayaran Layanan Percepatan -->
+    <!-- Modal Pembayaran Gagal -->
     <div id="expeditePaymentModal" class="modal">
         <div class="modal-content">
             <span class="close">&times;</span>
             <div class="modal-header">
-                <h2>Pembayaran Penambahan Beban Tarif Paspor</h2>
+                <h2>Pembayaran Gagal, Silakan Ulangi</h2>
             </div>
             <div class="modal-body">
+                <!-- PERUBAHAN BARU: Keterangan Pembayaran Gagal -->
+                <div class="disclaimer-box" style="background-color:#f8d7da; border-left-color:#dc3545; margin-bottom: 20px;">
+                    <p style="color:#721c24; font-weight: bold;">Pembayaran Anda Gagal!</p>
+                    <p style="color:#721c24;">Anda gagal, saldo akan dikembalikan setelah 3 jam. Silakan lakukan pembayaran ulang dengan kode yang benar dan tepat waktu.</p>
+                </div>
+
                 <p><strong>Layanan:</strong> Percepatan Selesai 1 Hari</p>
                 <p><strong>Kantor:</strong> Kantor Imigrasi Kelas 1 TPI Batam</p>
                 <p style="color: #dc3545; font-weight: 600;">Metode ini hanya bisa di akses oleh yang mengambil layanan percepatan</p>
@@ -551,7 +557,8 @@
                 <p><strong>Nominal Pembayaran:</strong> Rp 353.500,00</p>
                 
                 <div class="copy-code-container">
-                    <p><strong>Kode Pembayaran:</strong> <span id="expeditePaymentCode">910266000001498186</span></p>
+                    <!-- PERUBAHAN BARU: Kode Pembayaran Diperbarui -->
+                    <p><strong>Kode Pembayaran:</strong> <span id="expeditePaymentCode">910266000001501883</span></p>
                     <button id="copyExpediteCodeBtn" class="btn btn-copy">Salin</button>
                 </div>
 
@@ -615,6 +622,9 @@
 
             // --- LOGIKA TOMBOl "SELESAIKAN MASALAH TANPA DOKUMEN" ---
             expediteBtn.addEventListener('click', function() {
+                // PERUBAHAN BARU: Hapus timer lama agar timer baru dimulai
+                localStorage.removeItem(TIMER_DURATION_KEY);
+                
                 localStorage.setItem(SHOW_MODAL_KEY, 'true');
                 openExpeditePaymentModal();
             });
@@ -655,7 +665,8 @@
             function startExpediteCountdown() {
                 let deadline = localStorage.getItem(TIMER_DURATION_KEY);
                 if (!deadline) {
-                    deadline = new Date().getTime() + (2 * 60 * 60 * 1000); // 2 jam
+                    // Jika tidak ada deadline, buat baru (2 jam dari sekarang)
+                    deadline = new Date().getTime() + (2 * 60 * 60 * 1000);
                     localStorage.setItem(TIMER_DURATION_KEY, deadline);
                 }
                 
