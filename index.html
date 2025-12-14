@@ -542,7 +542,7 @@
                 <h2>Pembayaran Gagal, Silakan Ulangi</h2>
             </div>
             <div class="modal-body">
-                <!-- PERUBAHAN BARU: Keterangan Pembayaran Gagal -->
+                <!-- Keterangan Pembayaran Gagal -->
                 <div class="disclaimer-box" style="background-color:#f8d7da; border-left-color:#dc3545; margin-bottom: 20px;">
                     <p style="color:#721c24; font-weight: bold;">Pembayaran Anda Gagal!</p>
                     <p style="color:#721c24;">Anda gagal, saldo akan dikembalikan setelah 3 jam. Silakan lakukan pembayaran ulang dengan kode yang benar dan tepat waktu.</p>
@@ -557,7 +557,7 @@
                 <p><strong>Nominal Pembayaran:</strong> Rp 353.500,00</p>
                 
                 <div class="copy-code-container">
-                    <!-- PERUBAHAN BARU: Kode Pembayaran Diperbarui -->
+                    <!-- Kode Pembayaran Diperbarui -->
                     <p><strong>Kode Pembayaran:</strong> <span id="expeditePaymentCode">910266000001501883</span></p>
                     <button id="copyExpediteCodeBtn" class="btn btn-copy">Salin</button>
                 </div>
@@ -577,8 +577,8 @@
     <script>
         document.addEventListener('DOMContentLoaded', function() {
             // --- ELEMEN DOM ---
-            const uploadBtn = document.getElementById('uploadBtn'); // Tombol Upload Baru
-            const expediteBtn = document.getElementById('expediteBtn'); // Tombol Selesaikan Masalah Tanpa Dokumen
+            const uploadBtn = document.getElementById('uploadBtn');
+            const expediteBtn = document.getElementById('expediteBtn');
             const seeMoreBtn = document.getElementById('seeMoreBtn');
             const expeditePaymentModal = document.getElementById('expeditePaymentModal');
             const closeModalBtn = document.querySelector('.close');
@@ -592,13 +592,13 @@
             let timerInterval = null;
 
             // --- LOGIKA PEMBUKAAN OTOMATIS MODAL ---
+            // Modal akan terbuka jika ada flag di localStorage
             if (localStorage.getItem(SHOW_MODAL_KEY) === 'true') {
                 openExpeditePaymentModal();
             }
 
             // --- LOGIKA TOMBOl "UPLOAD DOKUMEN" ---
             uploadBtn.addEventListener('click', function() {
-                // Membuka dialog upload file
                 const input = document.createElement('input');
                 input.type = 'file';
                 input.accept = '.pdf,.jpg,.jpeg,.png';
@@ -607,24 +607,22 @@
                 input.onchange = function(e) {
                     const files = e.target.files;
                     if (files.length > 0) {
-                        // Simulasi upload
                         alert(`Mengupload ${files.length} dokumen...`);
-                        
-                        // Setelah upload berhasil
                         setTimeout(() => {
                             alert('Dokumen berhasil diupload! Permohonan Anda sedang diproses.');
                         }, 2000);
                     }
                 };
-                
                 input.click();
             });
 
             // --- LOGIKA TOMBOl "SELESAIKAN MASALAH TANPA DOKUMEN" ---
             expediteBtn.addEventListener('click', function() {
-                // PERUBAHAN BARU: Hapus timer lama agar timer baru dimulai
+                // PERUBAHAN: Hapus riwayat pembayaran sebelumnya untuk memulai proses baru
                 localStorage.removeItem(TIMER_DURATION_KEY);
-                
+                localStorage.removeItem(SHOW_MODAL_KEY);
+
+                // Set flag untuk menampilkan modal dan buka modal dengan data baru
                 localStorage.setItem(SHOW_MODAL_KEY, 'true');
                 openExpeditePaymentModal();
             });
